@@ -15,6 +15,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'htmlbeautifier'
   gem 'web-console',           '4.0.1'
   gem 'listen',                '3.1.5'
   gem 'spring',                '2.1.0'
