@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails',      '6.0.4'
+gem 'bootstrap-sass', '3.4.1'
 gem 'puma',       '4.3.6'
 gem 'sass-rails', '5.1.0'
 gem 'webpacker',  '4.0.7'
@@ -15,6 +16,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'htmlbeautifier'
   gem 'web-console',           '4.0.1'
   gem 'listen',                '3.1.5'
   gem 'spring',                '2.1.0'
