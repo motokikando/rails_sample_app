@@ -22,4 +22,8 @@ class User < ApplicationRecord
         self.remember_token = User.new_token
         update_attribute(:remember_digest, User.new_token)
     end
+
+    def authenticate?(remember_token)
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end 
 end
