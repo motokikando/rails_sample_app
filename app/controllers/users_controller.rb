@@ -20,7 +20,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-  end 
+  end
+
+  def update
+    @user = User.find(params[:id])
+    #成功した場合の処理
+    if @user.update(user_params)
+
+    else
+      render 'edit'
+    end
+  end
 
   private
     def user_params
