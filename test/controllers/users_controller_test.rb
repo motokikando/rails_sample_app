@@ -15,7 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_path
     assert_redirected_to login_url
   end
-  
+
   test "should redirect edit when not logged in" do
     get edit_user_path(@user)
     assert_not flash.empty?
@@ -42,6 +42,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                               email: @user.email } }
     assert flash.empty?
     assert_redirected_to root_url
+  end
+
+  test "should not allow the admin attribute to be edited via the web" do
+    log_in_as(@diff_user)
+    assert_not @diff_user.admin?
+    patch user_path(@diff_user), params: {
+                                    user: { password:              @diff_user.password,
+                                            password_confirmation: @diff_user.password,
+                                            admin: true } }
+    assert_not @diff_user.reload.admin?
   end
 
 
