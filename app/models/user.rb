@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    #ユーザーが破棄されたときに、micropostも削除するため、destroy メソッドに依存させる
+    has_many :microposts, dependent: :destroy
     attr_accessor :remember_token, :activation_token
     before_save :downcase_email
     before_create :create_activation_digest
