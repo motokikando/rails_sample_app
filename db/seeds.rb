@@ -20,3 +20,12 @@ User.create!(name:  name,
       activated: true,
       activated_at: Time.zone.now)
 end
+
+#ユーザーの一部を対象にマイクロポストを生成する
+#ユーザーにorderメソッドを使い、作成された:created_atの最初の6人をtake(6)で呼び出す
+users = User.order(:created_at).take(6)
+#50回ループ 50.times do end
+50.times do
+    content = Faker::Lorem.sentence(word_count: 5)
+    users.each{ |user| user.microposts.create!(content: content)}
+end
