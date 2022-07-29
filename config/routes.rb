@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :users
   #edut actionの名前付きルートを追加
   resources :account_activations, only: [:edit]
+  resources :microposts, only: [:create, :destroy]
+
 end
